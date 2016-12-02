@@ -16,7 +16,7 @@
                 var currentDiv = $(this);
                 setTimeout(function() {
                     currentDiv.removeClass('hidden');
-                }, (i + 1) * 800);
+                }, (i + 1) * 100);
             });
         });
     </script>

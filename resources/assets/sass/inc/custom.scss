@@ -61,3 +61,7 @@ html, body {
   -o-transition: all 1s ease;
   transition: all 1s ease;
 }
+
+.canvas > .line {
+  opacity: 0.3;
+}

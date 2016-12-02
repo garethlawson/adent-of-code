@@ -16,8 +16,8 @@ class DayOneService extends AbstractService
     const DIRECTION_WEST  = 'W';
 
     /** HTML line constant */
-    const HTML_LINE_VERTICAL   = '<div class="hidden" style="position: absolute; width: 1px; height: %spx; top: %spx; left: %spx; background: #000;"></div>';
-    const HTML_LINE_HORIZONTAL = '<div class="hidden" style="position: absolute; width: %spx; height: 1px; top: %spx; left: %spx; background: #000;"></div>';
+    const HTML_LINE_VERTICAL   = '<div class="hidden line" style="position: absolute; width: 1px; height: %spx; top: %spx; left: %spx; background: #000;"></div>';
+    const HTML_LINE_HORIZONTAL = '<div class="hidden line" style="position: absolute; width: %spx; height: 1px; top: %spx; left: %spx; background: #000;"></div>';
 
     /** HTML Start position */
     const HTML_POSITION_START = 400;
@@ -105,7 +105,8 @@ class DayOneService extends AbstractService
             $this->recalculateCoordinates($direction, $blocks);
         });
 
-        $this->pathHtml .= '<div style="position: absolute; top: ' . $this->vertical . 'px; left: '. $this->horizontal .
+        $this->pathHtml .= '<div style="position: absolute; top: ' . (self::HTML_POSITION_START + $this->vertical * 1.5) . 'px;'
+            . ' left: '. (self::HTML_POSITION_START + $this->horizontal * 1.5) .
             'px; width:4px; height: 4px; border-radius:2px; background: green;"></div>';
         return $shortestDistance = abs($this->vertical) + abs($this->horizontal);
     }
@@ -137,9 +138,9 @@ class DayOneService extends AbstractService
     protected function recalculateCoordinates(string $direction, int $blocks)
     {
         $newDirection = $this->adjustCompass($direction);
-        $htmlLineLength = $blocks * 1;
-        $top = $this->vertical * 1;
-        $left = $this->horizontal * 1;
+        $htmlLineLength = $blocks * 1.5;
+        $top = $this->vertical * 1.5;
+        $left = $this->horizontal * 1.5;
         switch ($newDirection) {
             case self::DIRECTION_NORTH:
                 $this->pathHtml .= sprintf(
