@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\TwentySixteen;
 
-class aocDayOneService
+use App\Services\AbstractService;
+use Illuminate\Filesystem\Filesystem;
+
+class DayOneService extends AbstractService
 {
-    /** Direction contants */
+    /** Direction constants */
     const DIRECTION_LEFT  = 'L';
     const DIRECTION_RIGHT = 'R';
     const DIRECTION_NORTH = 'N';
@@ -35,7 +38,7 @@ class aocDayOneService
     protected $horizontal;
 
     /** @var \Illuminate\Support\Collection */
-    protected $visitedCoords;
+    protected $visitedCoordinates;
 
     /** @var int */
     protected $easterBunnyHqDistance;
@@ -45,24 +48,17 @@ class aocDayOneService
 
     /**
      * aocDayOneService constructor.
+     *
+     * @param Filesystem $filesystem
      */
-    public function __construct()
+    public function __construct(Filesystem $filesystem)
     {
         // Initialise directions
-        $this->directions = collect([
-            'R3', 'L5', 'R2', 'L1', 'L2', 'R5', 'L2', 'R2', 'L2', 'L2', 'L1', 'R2', 'L2', 'R4', 'R4', 'R1', 'L2', 'L3',
-            'R3', 'L1', 'R2', 'L2', 'L4', 'R4', 'R5', 'L3', 'R3', 'L3', 'L3', 'R4', 'R5', 'L3', 'R3', 'L5', 'L1', 'L2',
-            'R2', 'L1', 'R3', 'R1', 'L1', 'R187', 'L1', 'R2', 'R47', 'L5', 'L1', 'L2', 'R4', 'R3', 'L3', 'R3', 'R4',
-            'R1', 'R3', 'L1', 'L4', 'L1', 'R2', 'L1', 'R4', 'R5', 'L1', 'R77', 'L5', 'L4', 'R3', 'L2', 'R4', 'R5', 'R5',
-            'L2', 'L2', 'R2', 'R5', 'L2', 'R194', 'R5', 'L2', 'R4', 'L5', 'L4', 'L2', 'R5', 'L3', 'L2', 'L5', 'R5',
-            'R2', 'L3', 'R3', 'R1', 'L4', 'R2', 'L1', 'R5', 'L1', 'R5', 'L1', 'L1', 'R3', 'L1', 'R5', 'R2', 'R5', 'R5',
-            'L4', 'L5', 'L5', 'L5', 'R3', 'L2', 'L5', 'L4', 'R3', 'R1', 'R1', 'R4', 'L2', 'L4', 'R5', 'R5', 'R4', 'L2',
-            'L2', 'R5', 'R5', 'L5', 'L2', 'R4', 'R4', 'L4', 'R1', 'L3', 'R1', 'L1', 'L1', 'L1', 'L4', 'R5', 'R4', 'L4',
-            'L4', 'R5', 'R3', 'L2', 'L2', 'R3', 'R1', 'R4', 'L3', 'R1', 'L4', 'R3', 'L3', 'L2', 'R2', 'R2', 'R2', 'L1',
-            'L4', 'R3', 'R2', 'R2', 'L3', 'R2', 'L3', 'L2', 'R4', 'L2', 'R3', 'L4', 'R5', 'R4', 'R1', 'R5', 'R3']);
+        $puzzleInputPath = $this->getPuzzleInputPath() . 'day1.txt';
+        $this->directions = collect(explode(", ", $filesystem->get($puzzleInputPath)));
 
         // Initialise visited coordinates
-        $this->visitedCoords = collect([
+        $this->visitedCoordinates = collect([
             '0,0',
         ]);
 
@@ -183,11 +179,11 @@ class aocDayOneService
                 break;
         }
 
-        if ($this->visitedCoords->contains($this->vertical . "," . $this->horizontal) && empty($this->easterBunnyHqDistance)) {
+        if ($this->visitedCoordinates->contains($this->vertical . "," . $this->horizontal) && empty($this->easterBunnyHqDistance)) {
             $this->easterBunnyHqDistance = abs($this->vertical) + abs($this->horizontal);
         }
 
-        $this->visitedCoords->push($this->vertical . "," . $this->horizontal);
+        $this->visitedCoordinates->push($this->vertical . "," . $this->horizontal);
     }
 
     /**

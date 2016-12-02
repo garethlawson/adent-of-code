@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\TwentySixteen;
 
+use App\Services\AbstractService;
 use Illuminate\Filesystem\Filesystem;
 
-class aocDayTwoService
+class DayTwoService extends AbstractService
 {
     /** Direction constants */
     const DIRECTION_UP    = 'U';
@@ -41,7 +42,8 @@ class aocDayTwoService
     public function __construct(Filesystem $filesystem)
     {
         $this->fileSystem = $filesystem;
-        $this->input = $this->fileSystem->get(storage_path('app/public/aocDay2Puzzle1.txt'));
+        $puzzleInputPath = $this->getPuzzleInputPath() . 'day2.txt';
+        $this->input = $this->fileSystem->get($puzzleInputPath);
 
         // Puzzle 1 keypad: assumed keypad
         $this->keypad = collect([

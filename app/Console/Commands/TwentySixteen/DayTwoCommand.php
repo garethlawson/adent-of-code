@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\TwentySixteen;
 
-use App\Services\aocDayTwoService;
+use App\Services\TwentySixteen\DayTwoService;
 use Illuminate\Console\Command;
 
-class aocDayTwoPuzzleOneCommand extends Command
+class DayTwoCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'aoc:2-1 {actual?}';
+    protected $signature = 'aoc2016:2 {actual?}';
 
     /**
      * The console command description.
@@ -33,10 +33,10 @@ class aocDayTwoPuzzleOneCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param aocDayTwoService $service
+     * @param DayTwoService $service
      * @return mixed
      */
-    public function handle(aocDayTwoService $service)
+    public function handle(DayTwoService $service)
     {
         // Switch for retrieving the code on the actual keypad: puzzle 2.
         // If the parameter is empty, the code for the assumed keypad is returned

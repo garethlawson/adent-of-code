@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/aoc/day1-puzzle2/', 'aocController@aocDayOnePuzzleOne');
+Route::get('/aoc2016/day1-puzzle2/', 'TwentySixteenController@aocDayOnePuzzleOne');

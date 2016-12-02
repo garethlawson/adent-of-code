@@ -2,9 +2,6 @@
 
 namespace App\Console;
 
-use App\Console\Commands\aocDayOnePuzzleOne;
-use App\Console\Commands\aocDayTwoPuzzleOneCommand;
-use App\Console\Commands\FindAndReplaceDoubleSpaces;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,8 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        aocDayOnePuzzleOne::class,
-        aocDayTwoPuzzleOneCommand::class,
+        Commands\TwentySixteen\DayOnePuzzleOneCommand::class,
+        Commands\TwentySixteen\DayTwoCommand::class,
     ];
 
     /**

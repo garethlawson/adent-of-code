@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\aocDayOneService;
+use App\Services\TwentySixteen\DayOneService;
 
-class aocController extends Controller
+class TwentySixteenController extends Controller
 {
     /**
      * Puzzle one HTML
      *
-     * @param aocDayOneService $service
+     * @param DayOneService $service
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function aocDayOnePuzzleOne(aocDayOneService $service)
+    public function aocDayOnePuzzleOne(DayOneService $service)
     {
         $service->findEasterBunnyHq1();
         $html = $service->getPathHtml();
