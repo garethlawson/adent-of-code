@@ -100,6 +100,7 @@ class DayOneService extends AbstractService
     /**
      * Find the Easter Bunny HQ
      *
+     * @param bool $actual
      * @return int
      */
     public function findEasterBunnyHq(bool $actual): int
@@ -116,6 +117,8 @@ class DayOneService extends AbstractService
             if ($actual && isset($this->easterBunnyHqActualDistance)) {
                 return false;
             }
+
+            return true;
         });
 
         // Part 2 of the puzzle

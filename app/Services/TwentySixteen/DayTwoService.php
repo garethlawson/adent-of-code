@@ -19,9 +19,6 @@ class DayTwoService extends AbstractService
     /** @var \Illuminate\Support\Collection */
     protected $actualKeypad;
 
-    /** @var string */
-    protected $input;
-
     /** @var int */
     protected $row;
 
@@ -41,9 +38,10 @@ class DayTwoService extends AbstractService
      */
     public function __construct(Filesystem $filesystem)
     {
-        $this->fileSystem = $filesystem;
+        parent::__construct($filesystem);
+
         $puzzleInputPath = $this->getPuzzleInputPath() . 'day2.txt';
-        $this->input = $this->fileSystem->get($puzzleInputPath);
+        $this->puzzleInput = $this->fileSystem->get($puzzleInputPath);
 
         // Puzzle 1 keypad: assumed keypad
         $this->keypad = collect([
@@ -90,7 +88,7 @@ class DayTwoService extends AbstractService
         }
 
         // Process the input line by line and reduce to a single text value
-        return collect(explode(PHP_EOL, $this->input))->map(function ($line) {
+        return collect(explode(PHP_EOL, $this->puzzleInput))->map(function ($line) {
             return $this->processLine($line);
         })->reduce(function ($carry, $key) {
             return $carry . $key;
