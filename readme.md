@@ -17,7 +17,9 @@ Then, from the command line run the following
 * gulp
 
 ## Getting solutions
-From the command line run: php artisan aoc:1
+From the command line run:
+* php artisan aoc:1
+
 Replace 1 with the relevant number for the day of the puzzle.
 To get the solution to the second part of a puzzle just add an argument to the command like this: 
-php artisan aoc:1 y
+* php artisan aoc:1 y
