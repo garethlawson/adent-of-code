@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\TwentySixteen\DayOnePuzzleOneCommand::class,
+        Commands\TwentySixteen\DayOneCommand::class,
         Commands\TwentySixteen\DayTwoCommand::class,
         Commands\TwentySixteen\DayThreeCommand::class,
     ];

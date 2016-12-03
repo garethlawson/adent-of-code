@@ -5,7 +5,7 @@ namespace App\Console\Commands\TwentySixteen;
 use App\Services\TwentySixteen\DayOneService;
 use Illuminate\Console\Command;
 
-class DayOnePuzzleOneCommand extends Command
+class DayOneCommand extends Command
 {
     const DIRECTION_LEFT  = 'L';
     const DIRECTION_RIGHT = 'R';
@@ -19,14 +19,14 @@ class DayOnePuzzleOneCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'aoc2016:1-1';
+    protected $signature = 'aoc2016:1 {actual?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Solve day one of Advent of Code';
 
     /** @var DayOneService */
     protected $service;
@@ -49,11 +49,12 @@ class DayOnePuzzleOneCommand extends Command
      */
     public function handle()
     {
-        $shortestDistance  = $this->service->findEasterBunnyHq1();
-        $shortestDistance2 = $this->service->findEasterBunnyHq2();
-        $this->info("The shortest path to the destination is $shortestDistance blocks.");
-        $this->info("Easter bunny HQ is actually $shortestDistance2 blocks away.");
+        // Switch for retrieving the code on the actual keypad: puzzle 2.
+        // If the parameter is empty, the code for the assumed keypad is returned
+        $actual = !empty($this->argument('actual'));
 
+        $shortestDistance  = $this->service->findEasterBunnyHq($actual);
+        $this->info("The shortest path to the destination is $shortestDistance blocks.");
         return true;
     }
 }
