@@ -2,8 +2,26 @@
 
 namespace App\Services;
 
+use Illuminate\Filesystem\Filesystem;
+
 abstract class AbstractService
 {
+    /** @var Filesystem */
+    protected $fileSystem;
+
+    /** @var string */
+    protected $puzzleInput;
+
+    /**
+     * AbstractService constructor.
+     *
+     * @param Filesystem $filesystem
+     */
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->fileSystem = $filesystem;
+    }
+
     /**
      * Get the path where the puzzle input is stored
      *
@@ -15,4 +33,11 @@ abstract class AbstractService
             'assets' . DIRECTORY_SEPARATOR . 'puzzle_input' . DIRECTORY_SEPARATOR . date('Y') . DIRECTORY_SEPARATOR
         );
     }
+
+    /**
+     * Get the name of the file that contains the puzzle input
+     *
+     * @return mixed
+     */
+    abstract protected function getPuzzleInputFile(): string;
 }

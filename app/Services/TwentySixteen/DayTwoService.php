@@ -184,4 +184,13 @@ class DayTwoService extends AbstractService
 
         return true;
     }
+
+    /**
+     * @inheritdoc
+     * @return string
+     */
+    protected function getPuzzleInputFile(): string
+    {
+        return 'day2.txt';
+    }
 }

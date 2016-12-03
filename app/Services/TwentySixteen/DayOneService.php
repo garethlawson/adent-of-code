@@ -197,4 +197,13 @@ class DayOneService extends AbstractService
     {
         return $this->direction = $this->directionMatrix->get($this->direction)->get($direction);
     }
+
+    /**
+     * @inheritdoc
+     * @return string
+     */
+    protected function getPuzzleInputFile(): string
+    {
+        return 'day1.txt';
+    }
 }
