@@ -26,33 +26,30 @@ class DayThreeService extends AbstractService
     /**
      * Count how many three side combinations can create a triangle from rows
      *
+     * @param bool $columns
      * @return int
      */
-    public function countPossibleTriangles(): int
+    public function countPossibleTriangles(bool $columns): int
     {
-        return collect(explode(PHP_EOL, $this->puzzleInput))->filter(function ($line) {
-            $sides = $this->getSidesFromLine($line);
-            return $this->isTriangle($sides);
-        })->count();
-    }
+        // Part 1 of the puzzle
+        if (!$columns) {
+            return collect(explode(PHP_EOL, $this->puzzleInput))->filter(function ($line) {
+                $sides = $this->getSidesFromLine($line);
+                return $this->isTriangle($sides);
+            })->count();
+        }
 
-    /**
-     * Count how many three side combinations can create a triangle from columns
-     *
-     * @return int
-     */
-    public function countPossibleTrianglesInColumns(): int
-    {
+        // Part 2 of the puzzle
         return collect(explode(PHP_EOL, $this->puzzleInput))->chunk(self::NO_TRIANGLE_SIDES)
             ->map(function ($threeLines) {
-            /** @var Collection $threeLines */
-            return $this->reduceToColumns($threeLines);
-        })->flatMap(function ($threeColumns) {
-            /** @var Collection $threeColumns */
-            return $threeColumns->filter(function ($column) {
-                return $this->isTriangle($column);
-            });
-        })->count();
+                /** @var Collection $threeLines */
+                return $this->reduceToColumns($threeLines);
+            })->flatMap(function ($threeColumns) {
+                /** @var Collection $threeColumns */
+                return $threeColumns->filter(function ($column) {
+                    return $this->isTriangle($column);
+                });
+            })->count();
     }
 
     /**
@@ -107,7 +104,7 @@ class DayThreeService extends AbstractService
      */
     protected function isTriangle(Collection $sides): bool
     {
-        if ($sides->count() != 3) {
+        if ($sides->count() != self::NO_TRIANGLE_SIDES) {
             return false;
         }
 
