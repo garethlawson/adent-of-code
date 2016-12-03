@@ -43,7 +43,7 @@ class DayTwoCommand extends Command
         $actual = !empty($this->argument('actual'));
 
         // Call the service and echo the result on the console
-        $this->info($service->determineBathroomCode($actual));
+        $this->info("The code to get into the bathroom is: {$service->determineBathroomCode($actual)}");
         return true;
     }
 }
