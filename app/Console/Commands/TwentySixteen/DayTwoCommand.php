@@ -19,7 +19,7 @@ class DayTwoCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Solve day two of Advent of Code';
 
     /**
      * Create a new command instance.
