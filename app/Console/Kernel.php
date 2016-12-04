@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\TwentySixteen\DayOneCommand::class,
         Commands\TwentySixteen\DayTwoCommand::class,
         Commands\TwentySixteen\DayThreeCommand::class,
+        Commands\TwentySixteen\DayFourCommand::class,
     ];
 
     /**

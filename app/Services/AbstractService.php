@@ -19,7 +19,14 @@ abstract class AbstractService
      */
     public function __construct(Filesystem $filesystem)
     {
-        $this->fileSystem = $filesystem;
+        $this->fileSystem  = $filesystem;
+        if (!$this->fileSystem->exists($this->getPuzzleInputPath() . $this->getPuzzleInputFile())) {
+            return;
+        }
+
+        $this->puzzleInput = $this->fileSystem->get(
+            $this->getPuzzleInputPath() . $this->getPuzzleInputFile()
+        );
     }
 
     /**
