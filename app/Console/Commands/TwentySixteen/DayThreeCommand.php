@@ -40,7 +40,7 @@ class DayThreeCommand extends Command
         $columns = !empty($this->argument('columns'));
 
         $this->info(
-            "There are {$service->countPossibleTriangles($columns)} combinations that cannot create a triangle."
+            "There are {$service->countPossibleTriangles($columns)} combinations that are possible triangles."
         );
 
         return true;
