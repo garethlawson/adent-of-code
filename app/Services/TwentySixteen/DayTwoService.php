@@ -3,6 +3,7 @@
 namespace App\Services\TwentySixteen;
 
 use App\Services\AbstractService;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 
 class DayTwoService extends AbstractService
@@ -35,13 +36,14 @@ class DayTwoService extends AbstractService
      * aocDayTwoService constructor.
      *
      * @param Filesystem $filesystem
+     * @throws FileNotFoundException
      */
     public function __construct(Filesystem $filesystem)
     {
         parent::__construct($filesystem);
-
-        $puzzleInputPath = $this->getPuzzleInputPath() . 'day2.txt';
-        $this->puzzleInput = $this->fileSystem->get($puzzleInputPath);
+        if (empty($this->puzzleInput)) {
+            throw new FileNotFoundException("No puzzle input was found for today");
+        }
 
         // Puzzle 1 keypad: assumed keypad
         $this->keypad = collect([

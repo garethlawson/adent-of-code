@@ -34,7 +34,7 @@ class DayFourService extends AbstractService
     {
         parent::__construct($filesystem);
         if (empty($this->puzzleInput)) {
-            throw new FileNotFoundException("No puzzle input was found for this day");
+            throw new FileNotFoundException("No puzzle input was found for today");
         }
 
         $this->alphabet = collect(str_split(self::ALPHABET));

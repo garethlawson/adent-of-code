@@ -3,6 +3,7 @@
 namespace App\Services\TwentySixteen;
 
 use App\Services\AbstractService;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 
 class DayOneService extends AbstractService
@@ -49,13 +50,17 @@ class DayOneService extends AbstractService
      * aocDayOneService constructor.
      *
      * @param Filesystem $filesystem
+     * @throws FileNotFoundException
      */
     public function __construct(Filesystem $filesystem)
     {
         parent::__construct($filesystem);
+        if (empty($this->puzzleInput)) {
+            throw new FileNotFoundException("No puzzle input was found for today");
+        }
+
         // Initialise directions
-        $puzzleInputPath = $this->getPuzzleInputPath() . $this->getPuzzleInputFile();
-        $this->directions = collect(explode(", ", $this->fileSystem->get($puzzleInputPath)));
+        $this->directions = collect(explode(", ", $this->puzzleInput));
 
         // Initialise visited coordinates for tracking the coordinates of each block that is passed
         $this->visitedCoordinates = collect([
