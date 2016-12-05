@@ -3,7 +3,6 @@
 namespace App\Console\Commands\TwentySixteen;
 
 use App\Services\TwentySixteen\DayFourService;
-use App\Services\TwentySixteen\DayThreeService;
 use Illuminate\Console\Command;
 
 class DayFourCommand extends Command
