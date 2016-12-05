@@ -19,7 +19,7 @@ class DayOneCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'aoc2016:1 {actual?}';
+    protected $signature = 'aoc2016:1 {part2?}';
 
     /**
      * The console command description.
@@ -49,11 +49,11 @@ class DayOneCommand extends Command
      */
     public function handle()
     {
-        // Switch for retrieving the code on the actual keypad: puzzle 2.
-        // If the parameter is empty, the code for the assumed keypad is returned
-        $actual = !empty($this->argument('actual'));
+        // Switch to get the answer to part 2 of the puzzle.
+        // Implemented by adding anything as an argument to the command
+        $part2 = !empty($this->argument('part2'));
 
-        $shortestDistance  = $this->service->findEasterBunnyHq($actual);
+        $shortestDistance  = $this->service->findEasterBunnyHq($part2);
         $this->info("The shortest path to the destination is $shortestDistance blocks.");
         return true;
     }

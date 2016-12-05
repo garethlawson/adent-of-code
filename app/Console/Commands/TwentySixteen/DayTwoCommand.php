@@ -12,7 +12,7 @@ class DayTwoCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'aoc2016:2 {actual?}';
+    protected $signature = 'aoc2016:2 {part2?}';
 
     /**
      * The console command description.
@@ -38,12 +38,12 @@ class DayTwoCommand extends Command
      */
     public function handle(DayTwoService $service)
     {
-        // Switch for retrieving the code on the actual keypad: puzzle 2.
-        // If the parameter is empty, the code for the assumed keypad is returned
-        $actual = !empty($this->argument('actual'));
+        // Switch to get the answer to part 2 of the puzzle.
+        // Implemented by adding anything as an argument to the command
+        $part2 = !empty($this->argument('part2'));
 
         // Call the service and echo the result on the console
-        $this->info("The code to get into the bathroom is: {$service->determineBathroomCode($actual)}");
+        $this->info("The code to get into the bathroom is: {$service->determineBathroomCode($part2)}");
         return true;
     }
 }

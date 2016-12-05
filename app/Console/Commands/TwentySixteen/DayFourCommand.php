@@ -38,6 +38,8 @@ class DayFourCommand extends Command
      */
     public function handle(DayFourService $service)
     {
+        // Switch to get the answer to part 2 of the puzzle.
+        // Implemented by adding anything as an argument to the command
         $part2 = !empty($this->argument('part2'));
         $message = "The sum of the valid room sectors is: ";
         if ($part2) {

@@ -12,7 +12,7 @@ class DayThreeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'aoc:3 {columns?}';
+    protected $signature = 'aoc:3 {part2?}';
 
     /**
      * The console command description.
@@ -37,10 +37,12 @@ class DayThreeCommand extends Command
      */
     public function handle(DayThreeService $service)
     {
-        $columns = !empty($this->argument('columns'));
+        // Switch to get the answer to part 2 of the puzzle.
+        // Implemented by adding anything as an argument to the command
+        $part2 = !empty($this->argument('part2'));
 
         $this->info(
-            "There are {$service->countPossibleTriangles($columns)} combinations that are possible triangles."
+            "There are {$service->countPossibleTriangles($part2)} combinations that are possible triangles."
         );
 
         return true;
