@@ -2,12 +2,14 @@
 My solutions built using PHP and Laravel 5.3.
 
 Prerequisites:
-* PHP >= 5.6.4
+* PHP >= 7.0 (scalar type hinting is used)
 * OpenSSL PHP Extension
 * PDO PHP Extension
 * Mbstring PHP Extension
 * Tokenizer PHP Extension
 * XML PHP Extension
+* Composer
+* NPM
 
 ## Installation
 After cloning the git repository, move into the directory where it was cloned.
@@ -22,4 +24,4 @@ From the command line run:
 
 Replace 1 with the relevant number for the day of the puzzle.
 To get the solution to the second part of a puzzle just add an argument to the command like this: 
-* php artisan aoc:1 y
+* php artisan aoc:1 part2
